@@ -22,6 +22,9 @@ class env extends uvm_env;
   
   function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
+    // Here reg_model is instantiated and connected with sequencer and adapter
+    // So when we run any sequence, which uses reg_model, now UVM know to which sequencer it should send that sequence
+    // Also now UVM knows how to translage the uvm_reg_bus_op rw,rd to driver understandable sequence_item
     reg_model.default_map.set_sequencer( .sequencer(agt.seqr), .adapter(adapter) );
     reg_model.default_map.set_base_addr('h0);        
     //regmodel.add_hdl_path("tb_top.DUT");
