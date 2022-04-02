@@ -1,3 +1,10 @@
+// The driver can only handel sequence_items. It does now know how to work with registers
+// But RAL user interface works with uvm_reg_bus_op objects. These objects contains all operations that someone needs to do with the registers
+// for example read, write, read-modify-write and so on. So these are the user api to work with register
+// Now we need some mechanism to translate the user api to driver understandable objects, in other words we need some translator/adaptor class which will
+// take the uvm_reg_bus_op objects and translate them to sequence_items. 
+// And that class is uvm_req_adapter with its predefined: reg2bus, bus2reg methods.
+// When user impmements these methods that everything is done.
 class reg_axi_adapter extends uvm_reg_adapter;
   `uvm_object_utils(reg_axi_adapter)
   
